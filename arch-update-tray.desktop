@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Arch Update Tray
+Exec=/usr/bin/arch-update-tray
+Type=Application
+Terminal=false
+Icon=arch-update-tray-green
+Categories=System;Utility;
+StartupNotify=false
+X-GNOME-Autostart-enabled=true
