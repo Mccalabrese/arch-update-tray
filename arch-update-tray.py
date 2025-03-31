@@ -76,8 +76,8 @@ class ArchUpdateTray:
         Notify.init("Arch Update Tray")
 
     def setup_sudoers(self):
-    sudoers_file = "/etc/sudoers.d/arch-update-tray"
-    sudoers_content = f"{os.getlogin()} ALL=(ALL) NOPASSWD: /usr/bin/pacman -Syu --noconfirm, /usr/bin/pacman -Syu, /usr/bin/fwupdmgr refresh -y, /usr/bin/fwupdmgr get-updates -y, /usr/bin/fwupdmgr update -y\n"
+        sudoers_file = "/etc/sudoers.d/arch-update-tray"
+        sudoers_content = f"{os.getlogin()} ALL=(ALL) NOPASSWD: /usr/bin/pacman -Syu --noconfirm, /usr/bin/pacman -Syu, /usr/bin/fwupdmgr refresh -y, /usr/bin/fwupdmgr get-updates -y, /usr/bin/fwupdmgr update -y\n"
     if not os.path.exists(sudoers_file):
         try:
             subprocess.run(["sudo", "tee", sudoers_file], input=sudoers_content, text=True, check=True)
