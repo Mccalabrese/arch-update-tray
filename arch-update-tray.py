@@ -23,6 +23,7 @@ class ArchUpdateTray:
         )
         self.logger = logging.getLogger('arch-update-tray')
         self.logger.info("Starting Arch Update Tray")
+        Notify.init("Arch Update Tray")
         self.setup_sudoers()
         self.setup_yay_config()
         self.app = QApplication(sys.argv)
@@ -73,20 +74,18 @@ class ArchUpdateTray:
         self.timer.start(1800000)  # 30 min in ms
         self.check_updates()
 
-        Notify.init("Arch Update Tray")
-
     def setup_sudoers(self):
         sudoers_file = "/etc/sudoers.d/arch-update-tray"
         sudoers_content = f"{os.getlogin()} ALL=(ALL) NOPASSWD: /usr/bin/pacman -Syu --noconfirm, /usr/bin/pacman -Syu, /usr/bin/fwupdmgr refresh -y, /usr/bin/fwupdmgr get-updates -y, /usr/bin/fwupdmgr update -y\n"
-    if not os.path.exists(sudoers_file):
-        try:
-            subprocess.run(["sudo", "tee", sudoers_file], input=sudoers_content, text=True, check=True)
-            subprocess.run(["sudo", "chmod", "440", sudoers_file], check=True)
-            self.logger.info("Sudoers configured")
-            self.notify("Setup", "Sudo permissions set—restart app if needed")
-        except subprocess.CalledProcessError as e:
-            self.logger.error(f"Sudoers setup failed: {e}")
-            QMessageBox.critical(None, "Setup Error", f"Run manually:\necho '{sudoers_content.strip()}' | sudo tee {sudoers_file} && sudo chmod 440 {sudoers_file}")
+        if not os.path.exists(sudoers_file):
+            try:
+                subprocess.run(["sudo", "tee", sudoers_file], input=sudoers_content, text=True, check=True)
+                subprocess.run(["sudo", "chmod", "440", sudoers_file], check=True)
+                self.logger.info("Sudoers configured")
+                self.notify("Setup", "Sudo permissions set—restart app if needed")
+            except subprocess.CalledProcessError as e:
+                self.logger.error(f"Sudoers setup failed: {e}")
+                QMessageBox.critical(None, "Setup Error", f"Run manually:\necho '{sudoers_content.strip()}' | sudo tee {sudoers_file} && sudo chmod 440 {sudoers_file}")
 
     def setup_yay_config(self):
         yay_dir = os.path.expanduser("~/.config/yay")
