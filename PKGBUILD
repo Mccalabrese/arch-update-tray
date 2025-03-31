@@ -12,7 +12,7 @@ source=("$pkgname.py" "update-green.png" "update-red.png" "$pkgname.desktop")
 sha256sums=('bf9fe50e09078fb197b39924d6a280ceeeb41e294bd955999d2f04a3fce33554'
             '63d4bb590e640a26affe2d082634488d2393a5ce3a964e40e5e8be59e2caeaca'
             '8ceb1f920bdee453f70f46145c9ec389138b88de73763b3732887cc8771f38e4'
-            'cbed85077ad1dd3eefd8de92d88f7e87e4d8e65d0d26b69cdd43d8b2137e98ac')
+            '4bdd7715578c6afeeda38e68e1d8a9ba5fa0d0741461b1b5ea4a4880e1d6d6d2')
 package() {
     # Install the Python script
     install -Dm755 "$srcdir/$pkgname.py" "$pkgdir/usr/bin/$pkgname"

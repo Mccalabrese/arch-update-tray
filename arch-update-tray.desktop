@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Arch Update Tray
-Exec=/usr/bin/arch-update-tray
+Exec=/usr/bin/python3 /usr/bin/arch-update-tray
 Type=Application
 Terminal=false
 Icon=arch-update-tray-green
