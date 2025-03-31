@@ -22,4 +22,4 @@ A system tray app for managing Arch Linux updates (`pacman`, `yay`, `fwupd`).
 
 ## Troubleshooting
 - **Log**: `~/.local/share/arch-update-tray.log`
-- **Sudo fails**: Run `sudo visudo -f /etc/sudoers.d/arch-update-tray` and add:
+- **Sudo fails**: Run `sudo visudo -f /etc/sudoers.d/arch-update-tray` and add: `f"{os.getlogin()} ALL=(ALL) NOPASSWD: /usr/bin/pacman -Syu --noconfirm, /usr/bin/pacman -Syu, /usr/bin/fwupdmgr refresh -y, /usr/bin/fwupdmgr get-updates -y, /usr/bin/fwupdmgr update -y\n"`
