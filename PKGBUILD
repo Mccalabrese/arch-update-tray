@@ -9,10 +9,10 @@ license=('GPL3')
 depends=('python' 'python-pyqt5' 'pacman' 'sudo' 'python-gobject' 'libnotify')
 optdepends=('yay: for AUR updates' 'fwupd: for firmware updates')
 source=("$pkgname.py" "update-green.png" "update-red.png" "$pkgname.desktop")
-sha256sums=('bf9fe50e09078fb197b39924d6a280ceeeb41e294bd955999d2f04a3fce33554'
+sha256sums=('f508fc65fdf6862e62192d4eadedda9e478029a7557e528286a2ed481845b888'
             '63d4bb590e640a26affe2d082634488d2393a5ce3a964e40e5e8be59e2caeaca'
             '8ceb1f920bdee453f70f46145c9ec389138b88de73763b3732887cc8771f38e4'
-            '4bdd7715578c6afeeda38e68e1d8a9ba5fa0d0741461b1b5ea4a4880e1d6d6d2')
+            'f0c591f2c31f7b7c2cdde139a5cab00a2b495d4b61fca774583ad93ba220f528')
 package() {
     # Install the Python script
     install -Dm755 "$srcdir/$pkgname.py" "$pkgdir/usr/bin/$pkgname"
